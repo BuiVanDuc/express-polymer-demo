@@ -1,0 +1,61 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+
+<dom-module id="new-post">
+    <template>
+        <!-- CSS Style -->
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <!-- HTML tags -->
+        <h2>New post</h2>
+        <iron-form>
+            <form id="createNewPost">
+                <paper-input always-float-label id="title" label="Post title"></paper-input>
+                <paper-input always-float-label id="content" label="Post content"></paper-input>
+                <paper-button raised on-click="createPostEvent">CREATE A POST</paper-button>
+            </form>
+        </iron-form>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class NewPost extends Polymer.Element {
+            static get is() { return 'new-post'; }
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: 'new-post'
+                    }
+                };
+            }
+
+            createPostEvent(e) {
+                e.preventDefault();
+
+                console.log(this.$);
+                console.log(this.$.title.value);
+                console.log(this.$.content.value);
+                api.createAPost(
+                    this.$.title.value,
+                    this.$.content.value
+                ).then(function (post){
+                    if (post !== undefined) {
+                        window.location = "/all-posts";
+                    }
+                });
+            }
+        }
+
+        window.customElements.define(NewPost.is, NewPost);
+    </script>
+</dom-module>

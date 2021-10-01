@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="all-posts">
+    <link rel="import" type="css" href="../assets/style.css">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <h2>This is my all post [[prop1]]!</h2>
+        <template is="dom-repeat" items="{{propPosts}}">
+        <div id="title">Hello [[item.name || item.title ]]</div>
+        <div id="content-body">Techvico SLAM [[item.content ]]</div>
+        </template>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class AllPosts extends Polymer.Element {
+            static get is() { return 'all-posts'; }
+            static get properties() {
+                return {
+                    propPosts: {
+                        type: Array,
+                        value: [],
+                    }
+                };
+            }
+            ready() {
+                super.ready();
+                const _this = this;
+                api.requestAllPosts().then(function (posts){
+                    _this.propPosts = posts;
+                });
+            }
+        }
+
+        window.customElements.define(AllPosts.is, AllPosts);
+    </script>
+</dom-module>

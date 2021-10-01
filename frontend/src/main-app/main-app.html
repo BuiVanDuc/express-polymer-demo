@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="./all-posts.html">
+<link rel="import" href="./new-post.html">
+<script src="../../bower_components/axios/dist/axios.min.js"></script>
+<script src="../services/api.js"></script>
+
+<dom-module id="main-app">
+  <link rel="import" type="css" href="../assets/style.css">
+  <template>
+    <!--  Header  -->
+    <div id="header">
+      <div id="header-bole">My Web Page</div>
+      <div id="header-note">Just another web page</div>
+    </div>
+    <!-- Content all Posts   -->
+    <!-- app-location binds to the app's URL -->
+    <app-location route="{{route}}"></app-location>
+
+    <!-- this app-route manages the top-level routes -->
+    <app-route
+            route="{{route}}"
+            pattern="/:page"
+            data="{{routeData}}"
+            tail="{{subroute}}"></app-route>
+
+    <iron-selector selected="[[routeData.page]]" attr-for-selected="name">
+      <a name="new-post" href="/new-post">new post</a>
+      <a name="all-posts" href="/all-posts">all posts</a>
+    </iron-selector>
+
+    <!-- iron-pages selects the view based on the active route -->
+    <iron-pages selected="[[routeData.page]]" attr-for-selected="name">
+      <all-posts name="all-post" route="{{subroute}}"></all-posts>
+      <new-post name="new-post" route="{{subroute}}"></new-post>
+    </iron-pages>
+    <!-- Footer    -->
+    <div id="footer">
+      <div id="footer-1">Copyright by techvico.com</div>
+      <div id="footer-2">Address: Vincom NCT</div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MainApp extends Polymer.Element {
+      static get is() { return 'main-app'; }
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            value: 'main-app',
+            observer: '_pageChanged',
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MainApp.is, MainApp);
+  </script>
+</dom-module>

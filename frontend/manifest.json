@@ -1,0 +1,7 @@
+{
+  "name": "Demo",
+  "short_name": "Demo",
+  "description": "this for only learning",
+  "start_url": "/",
+  "display": "standalone"
+}

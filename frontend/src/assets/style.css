@@ -1,0 +1,45 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #F4F1F0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#body {
+  padding: 0px 80px;
+}
+
+#content {
+
+}
+
+#header {
+  text-align: center;
+}
+
+#header #header-bole {
+  padding: 10px;
+}
+
+#header #header-note {
+  padding: 10px;
+}
+
+#title {
+  font-size: 30pt;
+}
+
+#createNewPost {
+  width: 300px;
+}
+
+#createNewPost #title {
+  width: 100%;
+}
+
+#createNewPost #content {
+  width: 100%;
+}

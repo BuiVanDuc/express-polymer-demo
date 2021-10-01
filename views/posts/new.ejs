@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div id="body">
+    <div id="content">
+        <%- include('../partials/_header') %>
+        <div>New blog post</div>
+        <form id="createNewPost" action="/posts" method="POST">
+            <label for="title">Post title</label>
+            <input type="text" id="title" name="title" placeholder="Please inout your name">
+            <label for="content">Content</label>
+            <input type="text" id="content" name="content" placeholder="Please input content">
+            <button type="submit">CREATE A POST</button>
+        </form>
+        <%- include('../partials/_footer') %>
+    </div>
+</div>
+</body>
+</html>
